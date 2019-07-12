@@ -57,8 +57,8 @@ BuildOutput
 BuildOutput/*
 WebPublish
 WebPublish/*
-nuget
 nuget/*
+!nuget/.gitkeep
 
 #Cake
 tools/*

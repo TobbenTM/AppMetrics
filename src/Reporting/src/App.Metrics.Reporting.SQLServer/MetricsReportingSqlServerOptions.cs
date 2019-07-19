@@ -1,12 +1,10 @@
-﻿// <copyright file="MetricsTextFileReporterBuilder.cs" company="App Metrics Contributors">
+﻿// <copyright file="MetricsReportingSqlServerOptions.cs" company="App Metrics Contributors">
 // Copyright (c) App Metrics Contributors. All rights reserved.
 // </copyright>
 
+using System;
 using App.Metrics.Filters;
 using App.Metrics.Formatters;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace App.Metrics.Reporting.SQLServer
 {

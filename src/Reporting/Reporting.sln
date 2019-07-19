@@ -110,9 +110,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Metrics.Reporting.SQLSe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Metrics.Formatters.SQLServer", "src\App.Metrics.Formatters.SQLServer\App.Metrics.Formatters.SQLServer.csproj", "{30950CA5-2385-4CD1-AA14-7A3C8A5FA0FD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLServer", "SQLServer", "{BED85740-2412-482F-B303-7D7A64A3F942}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Server", "SQL Server", "{BED85740-2412-482F-B303-7D7A64A3F942}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricsSQLServerSandbox", "sandbox\MetricsSQLServerSandbox\MetricsSQLServerSandbox.csproj", "{EF26B452-9C95-4A86-81E5-800C684BB48C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsSQLServerSandbox", "sandbox\MetricsSQLServerSandbox\MetricsSQLServerSandbox.csproj", "{EF26B452-9C95-4A86-81E5-800C684BB48C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Server", "SQL Server", "{95E7EB74-A139-48F7-9325-2DEB48EC15D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Metrics.Reporting.SQLServer.Facts", "test\App.Metrics.Reporting.SQLServer.Facts\App.Metrics.Reporting.SQLServer.Facts.csproj", "{440CF6AE-9AFD-47EC-B9BF-A73BFA23586A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -248,6 +252,10 @@ Global
 		{EF26B452-9C95-4A86-81E5-800C684BB48C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF26B452-9C95-4A86-81E5-800C684BB48C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF26B452-9C95-4A86-81E5-800C684BB48C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{440CF6AE-9AFD-47EC-B9BF-A73BFA23586A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440CF6AE-9AFD-47EC-B9BF-A73BFA23586A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440CF6AE-9AFD-47EC-B9BF-A73BFA23586A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440CF6AE-9AFD-47EC-B9BF-A73BFA23586A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -300,6 +308,8 @@ Global
 		{30950CA5-2385-4CD1-AA14-7A3C8A5FA0FD} = {6420D01D-53C8-4832-97E3-9C94E725DA6E}
 		{BED85740-2412-482F-B303-7D7A64A3F942} = {887BC5A0-8ED7-4460-851D-5EFC4AE828DE}
 		{EF26B452-9C95-4A86-81E5-800C684BB48C} = {BED85740-2412-482F-B303-7D7A64A3F942}
+		{95E7EB74-A139-48F7-9325-2DEB48EC15D9} = {DD2E4647-7125-4CE3-9BA5-B45A26113A31}
+		{440CF6AE-9AFD-47EC-B9BF-A73BFA23586A} = {95E7EB74-A139-48F7-9325-2DEB48EC15D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {492C97B1-706A-4357-B3F7-EFB6AFB1F6C6}

@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿// <copyright file="Host.cs" company="App Metrics Contributors">
+// Copyright (c) App Metrics Contributors. All rights reserved.
+// </copyright>
+
+using System;
 
 namespace MetricsSQLServerSandbox
 {
@@ -6,6 +10,7 @@ namespace MetricsSQLServerSandbox
     {
         public static void Main()
         {
+            Console.WriteLine("Hello world");
         }
     }
 }

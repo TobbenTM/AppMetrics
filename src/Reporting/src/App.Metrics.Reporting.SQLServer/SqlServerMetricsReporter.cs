@@ -1,4 +1,4 @@
-﻿// <copyright file="MetricsTextFileReporterBuilder.cs" company="App Metrics Contributors">
+﻿// <copyright file="SqlServerMetricsReporter.cs" company="App Metrics Contributors">
 // Copyright (c) App Metrics Contributors. All rights reserved.
 // </copyright>
 
@@ -6,6 +6,7 @@ using App.Metrics.Filters;
 using App.Metrics.Formatters;
 using App.Metrics.Formatters.SQLServer;
 using App.Metrics.Logging;
+using App.Metrics.Reporting.SQLServer.Client;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,9 +15,7 @@ namespace App.Metrics.Reporting.SQLServer
 {
     public class SqlServerMetricsReporter : IReportMetrics
     {
-
         private static readonly ILog Logger = LogProvider.For<SqlServerMetricsReporter>();
-        private static readonly int _defaultBufferSize = 4096;
         private readonly IMetricsOutputFormatter _defaultMetricsOutputFormatter = new MetricsSqlServerOutputFormatter();
         private readonly MetricsReportingSqlServerOptions _options;
 
@@ -48,6 +47,8 @@ namespace App.Metrics.Reporting.SQLServer
             _options = options;
 
             Logger.Info($"Using Metrics Reporter {this}. Table name: {_options.TableName} FlushInterval: {FlushInterval}");
+
+            EnsureInfrastructure().GetAwaiter().GetResult();
         }
 
         /// <inheritdoc />
@@ -58,6 +59,22 @@ namespace App.Metrics.Reporting.SQLServer
 
         /// <inheritdoc />
         public IMetricsOutputFormatter Formatter { get; set; }
+
+        public async Task EnsureInfrastructure()
+        {
+            using (var client = new MetricsSqlClient(_options))
+            {
+                if (_options.CreateDatabaseIfNotExists)
+                {
+                    await client.EnsureDatabase();
+                }
+
+                if (_options.CreateTableIfNotExists)
+                {
+                    await client.EnsureTable();
+                }
+            }
+        }
 
         /// <inheritdoc />
         public Task<bool> FlushAsync(MetricsDataValueSource metricsData, CancellationToken cancellationToken = default)

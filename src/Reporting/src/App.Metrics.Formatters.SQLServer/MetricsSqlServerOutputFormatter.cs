@@ -1,4 +1,4 @@
-﻿// <copyright file="MetricsTextFileReporterBuilder.cs" company="App Metrics Contributors">
+﻿// <copyright file="MetricsSqlServerOutputFormatter.cs" company="App Metrics Contributors">
 // Copyright (c) App Metrics Contributors. All rights reserved.
 // </copyright>
 
@@ -22,6 +22,11 @@ namespace App.Metrics.Formatters.SQLServer
             MetricsDataValueSource metricsData,
             CancellationToken cancellationToken = default)
         {
+            if (output == null)
+            {
+                throw new ArgumentNullException(nameof(output));
+            }
+
             throw new NotImplementedException();
         }
     }

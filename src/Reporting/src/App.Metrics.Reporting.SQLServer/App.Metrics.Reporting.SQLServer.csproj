@@ -7,11 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Scripts\CreateTable.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\CreateTable.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\App.Metrics.Formatters.SQLServer\App.Metrics.Formatters.SQLServer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="App.Metrics.Abstractions" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
   </ItemGroup>
 
 </Project>

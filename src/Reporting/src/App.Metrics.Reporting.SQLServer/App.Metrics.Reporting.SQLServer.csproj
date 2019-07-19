@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Provides SQL Server reporting capability to App Metrics</Description>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <PackageTags>appmetrics;reporting;sqlserver;mssql</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\App.Metrics.Formatters.SQLServer\App.Metrics.Formatters.SQLServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="App.Metrics.Abstractions" />
+  </ItemGroup>
+
+</Project>

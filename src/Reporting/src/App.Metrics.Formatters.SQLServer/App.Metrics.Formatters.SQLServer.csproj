@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>App Metrics Formatting, formatting metrics data to SQL Server</Description>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <PackageTags>appmetrics;sqlserver;mssql</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="App.Metrics.Core" />
+  </ItemGroup>
+
+</Project>

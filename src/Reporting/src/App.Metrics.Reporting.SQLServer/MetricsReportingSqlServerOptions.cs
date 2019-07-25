@@ -40,11 +40,6 @@ namespace App.Metrics.Reporting.SQLServer
         public string TableName { get; set; } = "Metrics";
 
         /// <summary>
-        ///     Gets or sets the flag for auto-creating database.
-        /// </summary>
-        public bool CreateDatabaseIfNotExists { get; set; } = false;
-
-        /// <summary>
         ///     Gets or sets the flag for auto-creating database table.
         /// </summary>
         public bool CreateTableIfNotExists { get; set; } = false;

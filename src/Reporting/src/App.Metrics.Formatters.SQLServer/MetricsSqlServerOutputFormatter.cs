@@ -17,6 +17,7 @@ namespace App.Metrics.Formatters.SQLServer
         /// <inheritdoc />
         public MetricFields MetricFields { get; set; }
 
+        /// <inheritdoc />
         public Task WriteAsync(
             Stream output,
             MetricsDataValueSource metricsData,
@@ -25,6 +26,18 @@ namespace App.Metrics.Formatters.SQLServer
             if (output == null)
             {
                 throw new ArgumentNullException(nameof(output));
+            }
+
+            var serializer = new MetricSnapshotSqlServerWriter();
+
+            using (var streamWriter = new StreamWriter(output))
+            {
+                using (var textWriter = new MetricSnapshotInfluxDbLineProtocolWriter(
+                    streamWriter,
+                    _options.MetricNameFormatter))
+                {
+                    serializer.Serialize(textWriter, metricsData, MetricFields);
+                }
             }
 
             throw new NotImplementedException();

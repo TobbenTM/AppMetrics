@@ -5,9 +5,11 @@
 using App.Metrics.Filters;
 using App.Metrics.Formatters;
 using App.Metrics.Formatters.SQLServer;
+using App.Metrics.Formatters.SQLServer.Internal;
 using App.Metrics.Logging;
 using App.Metrics.Reporting.SQLServer.Client;
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -62,13 +64,8 @@ namespace App.Metrics.Reporting.SQLServer
 
         public async Task EnsureInfrastructure()
         {
-            using (var client = new MetricsSqlClient(_options))
+            using (var client = new DefaultMetricsSqlClient(_options))
             {
-                if (_options.CreateDatabaseIfNotExists)
-                {
-                    await client.EnsureDatabase();
-                }
-
                 if (_options.CreateTableIfNotExists)
                 {
                     await client.EnsureTable();
@@ -77,9 +74,30 @@ namespace App.Metrics.Reporting.SQLServer
         }
 
         /// <inheritdoc />
-        public Task<bool> FlushAsync(MetricsDataValueSource metricsData, CancellationToken cancellationToken = default)
+        public async Task<bool> FlushAsync(MetricsDataValueSource metricsData, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            Logger.Trace("Flushing metrics snapshot");
+
+            using (var stream = new MemoryStream())
+            using (var client = new DefaultMetricsSqlClient(_options, cancellationToken))
+            {
+                await Formatter.WriteAsync(stream, metricsData, cancellationToken);
+
+                stream.Position = 0;
+
+                SqlMetricRow[] rows = new SqlMetricRow[0];
+                var result = await client.WriteAsync(rows);
+
+                if (result.Success)
+                {
+                    Logger.Trace("Successfully flushed metrics snapshot");
+                    return true;
+                }
+
+                Logger.Error(result.ErrorMessage);
+
+                return false;
+            }
         }
     }
 }

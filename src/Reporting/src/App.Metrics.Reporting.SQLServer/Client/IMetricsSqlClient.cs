@@ -3,15 +3,14 @@
 // </copyright>
 
 using System.Threading.Tasks;
+using App.Metrics.Formatters.SQLServer.Internal;
 
 namespace App.Metrics.Reporting.SQLServer.Client
 {
     public interface IMetricsSqlClient
     {
-        Task EnsureDatabase();
-
         Task EnsureTable();
 
-        Task LogMetric();
+        Task<SqlWriteResult> WriteAsync(SqlMetricRow[] rows);
     }
 }
